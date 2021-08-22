@@ -1,39 +1,25 @@
-import sys
-sys.stdin = open('input.txt')
-
 T = int(input())
-
 for tc in range(1, T+1):
-    stick = list(input())
-    length = len(stick)
-
-    new_stick = []
+    data = list(input())
+    data_1 = []
     i = 0
-
-    while i < length:
-        if stick[i] == '(' and stick[i+1] == ')':
-            new_stick.append('1')
+    while i != len(data):
+        if data[i] == '(' and data[i+1] == ')':
+            data_1.append('1')
             i += 2
         else:
-            new_stick.append(stick[i])
+            data_1.append(data[i])
             i += 1
 
-    s, e = 0, 0
+    result = 0
     cnt = 0
-
-    for i in new_stick:
-        m = s - e
-        if i == '(':
-            s += 1
-        elif i == ')':
+    for i in range(len(data_1)):
+        if data_1[i] == '1':
+            result += cnt
+        elif data_1[i] == '(':
             cnt += 1
-            e += 1
-        if m == 0:
-            pass
-        else:
-            if i == '1':
-                cnt += m
+        elif data_1[i] == ')':
+            cnt -= 1
+            result += 1
 
-    print('#{} {}'.format(tc, cnt))
-
-
+    print('#{} {}'.format(tc, result))

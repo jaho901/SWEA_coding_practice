@@ -1,22 +1,16 @@
-import sys
-sys.stdin = open('input.txt')
-
 T = int(input())
-
 for tc in range(1, T+1):
     N = int(input())
-    number = list(map(int, input().split()))
-
-    sort_number = []
+    data = list(map(int, input().split()))
 
     for i in range(N-1):
-        minimum = number[i]
+        minimum = data[i]
+        idx = i
         for j in range(i+1, N):
-            if minimum > number[j]:
-                minimum = number[j]
-                number[i], number[j] = number[j], number[i]
+            if minimum > data[j]:
+                minimum = data[j]
+                idx = j
+        data[i], data[idx] = data[idx], data[i]
 
-    result = ' '.join(map(str, number))
-    print('#{0} {1}'.format(tc, result))
-
-
+    data = ' '.join(map(str, data))
+    print('#{} {}'.format(tc, data))
